@@ -25,7 +25,7 @@ echo "<p>";//para multidimensionales se tiene que concatenar
 echo "</p>";
 
 
-echo "Pecualidades o sobreEscrituras";
+echo "<h1>peculiaridades o sobreEscrituras</h1>";
 
 echo "<p>";
 $abecedario = array(
@@ -58,6 +58,27 @@ $abecedario = array(
 
 );
 print ("<p>".print_r($abecedario,true)."</p>");
+echo "</p>";
+
+
+echo "<p>";
+$arraySorpresa[]=array();
+$arraySorpresa[]=array(1,2,3);
+echo "<h1>array sorpresa</h1>";
+echo "<p>".print_r($arraySorpresa,true)."</p>";
+echo "numero de array sorpresa => ".count($arraySorpresa);
+//for ($i=0; $i < count($arraySorpresa); $i++) { 
+//    echo "Posición ".$i." contiene ".$arraySorpresa[$i];
+//}
+echo "<p>No se puede utilizar for para recorrer los array asociativos</p>";
+$i =0;
+foreach ($arraySorpresa as $value) {
+    if(!is_array($value))
+        echo "Posición ".$i." contiene ".$arraySorpresa[$i];
+    else
+        echo "<p>".print_r($arraySorpresa[$i],true)."</p>";
+    $i++;
+}    
 echo "</p>";
 
 
