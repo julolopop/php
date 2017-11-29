@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang=\"es\">
+    <head>
+            <title>Formulario registro</title>
+            <meta charset="utf-8"/>
+            <style type="text/css">
+                input:hover {
+                    background-color: red;
+                    
+                }
+                input:focus {
+                    background-color: yellow;
+                    
+                }
+                h1, h3{
+                    font-family: Georgia, serif;
+                }
+                legend, p{      
+                    font-weight: bold;
+                }                
+                body{      
+                    font-family: Arial, Helvetica, sans-serif;
+                }
+                </style>
+    </head>
+    <body>
+        <div align="center">
+        <h1 al>Formulario registro</h1>
+        <h3>Datos usuario</h3>
+        </div>
+        <form action="Formulario.php" method="post">
+
+            <fieldset>
+                <legend>¿QUIEN ERES?</legend>
+            <p>Nombre:</p><input type="text" name="nombre" required="required" id="nombre"/>
+            <p>Apellidos:</p> <input type="text" name="apellidos" required="required"/>
+            <p>Correo electronico:</p> <input type="email" name="email" required="required"/>
+            <p>Fecha de nacimiento: </p>
+            <p><input type="date" required="required" min="1900-01-01" name="fecha"/></p>
+            </fieldset>
+
+            <fieldset>
+                <legend>¿DE DONDE ERES?</legend>
+                    <p>Ciudad:</p> <input type="text" name="ciudad" required="required"/>
+                    <p>Código postal:</p> <input type="number" name="codigo" required="required"/>
+                    <p>País: </p>
+                        <select name="pais">
+                              <option value="esp">España</option>
+                              <option value="fra">Francia</option>
+                              <option value="ale">Alemania</option>
+                              <option value="rus">Rusia</option>
+                        </select>
+                    
+
+            </fieldset>
+            <fieldset>
+                <legend>¿COMO QUIERES INICIAR SESION?</legend>
+                    <p>Nombre de usuario: </p><input type="text" name="username" required="required"/>
+                    <p>Contraseña:</p> <input type="password" name="contra" required="required"/>
+                    <p>Vuelve a escribir la contraseña:</p> <input type="password" name="contra2" required="required"/>
+
+            </fieldset>
+            <fieldset>
+                <legend>CONDICIONES DE REGISTRO</legend>
+                    <p> Desea recivir ofertas de IDESWEB</p>
+                    <p>
+                        <input type="radio" name="frec" value="dia" /> 1 vez al día
+                        <input type="radio" name="frec" value="sememana"/> 1 vez a la semana
+                        <input type="radio" name="frec" value="mes" /> 1 vez al mes 
+                    </p>
+                    <p> <input type="checkbox" name="acepta"/>
+                     Acepto el acuerdo de servicios, la declaración de privacidad y el uso de cookies. </p>
+
+
+                
+            </fieldset>
+
+                </br></br>
+
+            <input type="submit" value="¡Suscríbete!"/>
+        </form>
+
+    </body>
+</html>
