@@ -1,12 +1,6 @@
 <?php
-print "<!DOCTYPE html>
-<html>
-<head>
-<meta charset=\"UTF-8\">
-<title>Hola Mundo</title>
-</head>
-<body>";
+include "biblioteca.php";
+print show_head("Titulo");
 
-print "</body>
-</html>";
+print show_foot();
 ?>
