@@ -1,8 +1,9 @@
 <?php
-include_once "biblioteca.php";
-include_once "dao.php";
+include_once "App.php";
+session_start();
 
-print show_head("Inicio Sesión");
+
+print App::show_head("Inicio Sesión");
 
     print "
 <div class=\"container\" >
@@ -36,10 +37,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         print "<p>Error Debe introducir una contraseña de usuario</p>";
     }else{
         //realizamos una conesion a la base de datos
-        $dao = new Dao();
-        if($dao->isConnective())
-            print "<p>.$dao->error</p>";
-        else if($dao->validateUser($user,$password)){
+        
+        $app = new App();
+
+        if($app->getDao()->isConnective())
+            print "<p>.$app->getDao()->error</p>";
+        else if($app->getDao()->validateUser($user,$password)){
+            $app->init_sesion($user);
             //guardamos la sesion de usuario y redirecionamos a otra pagina.
             print "<script language=\"javascript\">window.location.href=\"inventory.php\"</script>";
             
@@ -50,5 +54,5 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         
 
 }
-print show_foot();
+print App::show_foot();
 ?>

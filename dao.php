@@ -1,8 +1,8 @@
 <?php
 define ("DATABASE","Inventory");
-define ("MYSQL_HOST","msql:host=localhost;dbname=".DATABASE);
+define ("MYSQL_HOST","mysql:host=localhost;dbname=".DATABASE);
 define ("MYSQL_USER","www-data");
-define ("MYSQL_PASSWORD","1234");
+define ("MYSQL_PASSWORD","www-data");
 
 define ("TABLE_USER","user");
 define ("COLUNM_NAME","name");
@@ -14,9 +14,10 @@ class Dao{
     protected $conn;
     public $error;
 
-    function __construct (){
+    public function __construct (){
         try{
             $this->conn = new PDO(MYSQL_HOST,MYSQL_USER,MYSQL_PASSWORD);
+            
         }catch(PDOException $e){
             $this->error = "Error en la conesion".$e->getMessage();
             $this->conn = null;
@@ -25,6 +26,7 @@ class Dao{
 
     public function isConnective(){
         return $this->conn == null;
+
     }
     /**
      * Funcion que comprueva se el usuario existe en la base de datos 
@@ -50,7 +52,7 @@ class Dao{
     /**
      * destrictor
      */
-    function __destruct(){
+    public function __destruct(){
         $this->conn = null;
         unset($this->error);
     }
