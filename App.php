@@ -64,6 +64,10 @@ class App{
         session_destroy();
         $this->showLoggin();
     }
+
+    function showProductos(){
+         return $this->dao->showProductosDao();
+    }
 }
 
 ?>

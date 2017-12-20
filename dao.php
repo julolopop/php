@@ -49,6 +49,21 @@ class Dao{
     }
 
 
+    function showProductosDao(){
+        try{
+            $sql = "SELECT * FROM productos";
+            
+            
+            $statement = $this->conn->query($sql);
+            
+            return $statement;
+            
+        }catch(PDOException $e){
+            $this->error = "Error en la conesion".$e->getMessage();
+            $this->conn = null;
+        }
+    }
+
     /**
      * destrictor
      */
