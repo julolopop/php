@@ -65,8 +65,11 @@ class App{
         $this->showLoggin();
     }
 
-    function showProductos(){
-         return $this->dao->showProductosDao();
+    function showDependency(){
+        return $this->dao->showDependencyDao();
+    }
+   function showSector(){
+    return $this->dao->showSectorDao();
     }
 }
 

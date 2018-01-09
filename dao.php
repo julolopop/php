@@ -49,13 +49,28 @@ class Dao{
     }
 
 
-    function showProductosDao(){
+    function showDependencyDao(){
         try{
-            $sql = "SELECT * FROM productos";
+            $sql = "SELECT * FROM Dependency";
             
             
             $statement = $this->conn->query($sql);
+    
+            return $statement;
             
+        }catch(PDOException $e){
+            $this->error = "Error en la conesion".$e->getMessage();
+            $this->conn = null;
+        }
+    }
+
+    function showSectorDao(){
+        try{
+            $sql = "SELECT * FROM sector";
+            
+            
+            $statement = $this->conn->query($sql);
+    
             return $statement;
             
         }catch(PDOException $e){
