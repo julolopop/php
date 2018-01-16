@@ -5,11 +5,9 @@ session_start();
 
 print App::show_head("Inicio Sesión");
 
-    print "
-<div class=\"container\" >
-    <div class=\"row \">
-        <div class=\"col-12 col-md-4 offset-md-4\">
-            <h1 class=\"text-center\">Inicia sesión</h1>
+print   "
+    
+
             <form method=\"POST\" action=".$_SERVER['PHP_SELF'].">
                 <div class=\"form-group\">
                     <label for=\"inputUser\">Usuario</label>
@@ -22,10 +20,7 @@ print App::show_head("Inicio Sesión");
                 <div class=\"text-center\">
                     <button class=\"btn btn-primary\"  type=\"submit\">Inicia sesión</button>
                 </div>
-                </form>
-        </div> <!--col-md-4 -->    
-    </div>
-</div> <!-- Container -->";
+                </form>";
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
     $user = $_POST['user'];

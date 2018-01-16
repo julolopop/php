@@ -64,13 +64,17 @@ class Dao{
         }
     }
 
-    function showSectorDao(){
+    function showSectorDao($id){
         try{
-            $sql = "SELECT * FROM sector";
-            
-            
-            $statement = $this->conn->query($sql);
-    
+            $sql = "SELECT * FROM sector WHERE id_dependency=:id_dependency";
+            $statement = $this->conn->prepare($sql);
+            $statement->bindParam(":id_dependency",$id);
+            $statement->execute();
+/*
+            $sql = "SELECT * FROM sector WHERE id_dependency=?";
+            $statement = $this->conn->prepare($sql);
+            $statement->bindParam(":id_dependency",$id);
+*/
             return $statement;
             
         }catch(PDOException $e){

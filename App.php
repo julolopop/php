@@ -19,9 +19,33 @@ class App{
         <script src=\"bootstrap/js/bootstrap.min.js\"/>-->
         </head>
         <body>";
+        print "
+        <header>
+        <h1 class=\"text-center\">".$titulo."</h1>
+        </header>";
+        print "
+        <script src='http://code.jquery.com/jquery.js'></script>
+        <script src='js/bootstrap.min.js'></script>
+        <nav>
+        <ul>
+            <li><a href='info.php'>Información</a></li>
+            <li><a href='SingIn.php'>Login</a></li>  
+        </ul>
+    </nav>";
+
+        print "<div class='container-fluid'>
+        <div class='container'>
+        <div class='row'>
+        <div class=\"col-12 col-md-4 offset-md-4\">";
+
+
     }
      
     static function show_foot(){
+        print "</div> <!--col-md-4 -->    
+        </div>
+        </div>
+        </div> <!-- Container -->";
     print "</body>
     </html>";
     }
@@ -68,8 +92,8 @@ class App{
     function showDependency(){
         return $this->dao->showDependencyDao();
     }
-   function showSector(){
-    return $this->dao->showSectorDao();
+   function showSector($id){
+    return $this->dao->showSectorDao($id);
     }
 }
 
