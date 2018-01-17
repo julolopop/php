@@ -64,17 +64,16 @@ class Dao{
         }
     }
 
-    function showSectorDao($id){
+
+    function deleteDependencyDao($id){
         try{
-            $sql = "SELECT * FROM sector WHERE id_dependency=:id_dependency";
+            $sql = "DELETE FROM Dependency WHERE id=:id";
             $statement = $this->conn->prepare($sql);
-            $statement->bindParam(":id_dependency",$id);
+            $statement->bindParam(":id",$id);
             $statement->execute();
-/*
-            $sql = "SELECT * FROM sector WHERE id_dependency=?";
-            $statement = $this->conn->prepare($sql);
-            $statement->bindParam(":id_dependency",$id);
-*/
+            
+            
+    
             return $statement;
             
         }catch(PDOException $e){
@@ -83,6 +82,79 @@ class Dao{
         }
     }
 
+
+    function showSectorDao($id){
+        try{
+
+            if ($id != -1){
+            $sql = "SELECT * FROM sector WHERE id_dependency=:id_dependency";
+            $statement = $this->conn->prepare($sql);
+            $statement->bindParam(":id_dependency",$id);
+            $statement->execute();
+/*
+            $sql = "SELECT * FROM sector WHERE id_dependency=?";
+            $statement = $this->conn->prepare($sql);
+            $statement->bindParam(":id_dependency",$id);
+            */          
+        }else{
+            $sql = "SELECT * FROM sector";
+            $statement = $this->conn->query($sql);
+
+        }
+
+            return $statement;
+            
+        }catch(PDOException $e){
+            $this->error = "Error en la conesion".$e->getMessage();
+            $this->conn = null;
+        }
+    }
+
+    function deleteSectorIdDependencyDao($id){
+        
+            try{
+                $sql = "DELETE FROM sector WHERE id_dependency=:id_dependency";
+                $statement = $this->conn->prepare($sql);
+                $statement->bindParam(":id_dependency",$id);
+                $statement->execute();
+  
+    
+                return $statement;
+                
+            }catch(PDOException $e){
+                $this->error = "Error en la conesion".$e->getMessage();
+                $this->conn = null;
+            }
+    }
+    function deleteSectorIdDao($id){
+        
+            try{
+                $sql = "DELETE FROM sector WHERE id=:id";
+                $statement = $this->conn->prepare($sql);
+                $statement->bindParam(":id",$id);
+                $statement->execute();
+  
+    
+                return $statement;
+                
+            }catch(PDOException $e){
+                $this->error = "Error en la conesion".$e->getMessage();
+                $this->conn = null;
+            }
+    }
+    function anadirDependenciaDao($nombre,$nombrecorto,$descripcion){
+        
+        try{
+            $sql = "INSERT INTO Dependency ('name','shortname','description') VALUES ('".$nombre."','".$nombrecorto."','".$descripcion."') ";
+            $statement = $this->conn->query($sql);
+
+            return $statement;
+            
+        }catch(PDOException $e){
+            $this->error = "Error en la conesion".$e->getMessage();
+            $this->conn = null;
+        }
+    }
     /**
      * destrictor
      */

@@ -3,7 +3,7 @@ include_once "App.php";
 session_start();
 
 
-print App::show_head("Inicio Sesión");
+print App::show_headLogin("Inicio Sesión");
 
 print   "
     

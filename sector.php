@@ -19,6 +19,7 @@ $rowsSector  = $app->showSector($_REQUEST['id_dependency'])->fetchAll();
     print "<th>Nombre</th>";
     print "<th>Nombre corto</th>";
     print "<th>descripcion</th>";
+    print "<th>Eliminar</th>";
     print "</tr>";
 
 
@@ -29,6 +30,7 @@ $rowsSector  = $app->showSector($_REQUEST['id_dependency'])->fetchAll();
        print "<td>".$row['name'] ."</td>";
         print "<td>".$row['shortname'] ."</td>";
         print "<td>".$row['description'] ."</td>";
+        print"<td align='center'><a href='eliminarSector.php?id_dependency=".$row['id']."'><img src='./img/delete.jpg' height='35' width='35'/></a></td>";    
         print "</tr>";
     }
 
