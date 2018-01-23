@@ -58,10 +58,9 @@ function anadir(){
     $nombre = $_REQUEST['nombre'];
     $nombrecorto = $_REQUEST['nombrecorto'];
     $descripcion = $_REQUEST['descripcion'];
-
     $app = new App();
     $app->anadirDependencia($nombre,$nombrecorto,$descripcion);
-
+    print "<script language=\"javascript\">window.location.href=\"inventory.php\"</script>";
     }
 }
 

@@ -41,6 +41,11 @@ print "</table>";
 }else{
     print "<p>No hay datos en la base de datos</p>";
 }
+if($_REQUEST['id_dependency'] != -1){
+    print "<form action='anadirSector.php?id_dependency=".$_REQUEST['id_dependency']."'  method='post'>
+    <input type='submit' name='sectores' value='Añadir'  onclick='<script language=\"javascript\">window.location.href=\"anadirSector.php?id_dependency=".$idDependency."\"</script>' />
+    </form>";    
+}
 
 
 $app::show_foot();

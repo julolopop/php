@@ -1,0 +1,12 @@
+footer{
+    background: grey;
+    height: 100px;
+}
+header{
+    height: 100%;
+}
+#principal{
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 100%;
+}

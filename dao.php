@@ -145,9 +145,22 @@ class Dao{
     function anadirDependenciaDao($nombre,$nombrecorto,$descripcion){
         
         try{
-            $sql = "INSERT INTO Dependency ('name','shortname','description') VALUES ('".$nombre."','".$nombrecorto."','".$descripcion."') ";
-            $statement = $this->conn->query($sql);
+            $sql = "INSERT INTO Dependency VALUES (null,'".$nombre."','".$nombrecorto."','".$descripcion."');";
+            $statement = $this->conn->prepare($sql);
+            $statement->execute();
+            return $statement;
+            
+        }catch(PDOException $e){
+            $this->error = "Error en la conesion".$e->getMessage();
+            $this->conn = null;
+        }
+    }
 
+    function anadirSectorDao($nombre,$nombrecorto,$descripcion,$idDependency){
+        try{
+            $sql = "INSERT INTO sector VALUES (null,'".$nombre."','".$nombrecorto."','".$descripcion."',".$idDependency.");";
+            $statement = $this->conn->prepare($sql);
+            $statement->execute();
             return $statement;
             
         }catch(PDOException $e){

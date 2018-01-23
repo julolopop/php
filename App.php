@@ -145,6 +145,10 @@ class App{
     function anadirDependencia($nombre,$nombrecorto,$descripcion){
         return $this->dao->anadirDependenciaDao($nombre,$nombrecorto,$descripcion);
     }
+
+    function anadirSector($nombre,$nombrecorto,$descripcion,$idDependency){
+        return $this->dao->anadirSectorDao($nombre,$nombrecorto,$descripcion,$idDependency);
+    }
 }
 
 ?>
