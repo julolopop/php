@@ -13,14 +13,25 @@ class App{
         </head>
         <body>
         <div id='principal'>
-        <header>
+        <header align='center'>
+        <h1>Aula</h1>
         </header>
+        <div id='contenido'>
+        <div id='menu'>
+        <ol>
+            <li>Login</li>
+        </ol>
+        </div>
+        <nav>
+        <p>contenido</p>
         ";
     }
     static function showFooter(){
         print "
-        
+        </nav>
+        </div>
         <footer>
+        <p>Hecho por : Juan Manuel Diaz Ortiz</p>
         </footer>
         </div>
         </body>
