@@ -13,14 +13,22 @@ print "
 <br/>
 
 
-<form action='' method='post' align='center'>
-<p>Usuario &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type='text' class='texto' name='' required/></p>
-<p>Contraseña : <input type='text' class='texto' name='' required/></p>
+<form action='#' method='get' align='center'>
+<p>Usuario &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type='text' class='texto' name='user' required/></p>
+<p>Contraseña : <input type='password' class='texto' name='pas' required/></p>
 <br/>
-<input type='submit' class='boton' name='enviar' value='Enviar' />
+<input type='submit' class='boton' name='enviar' value='Enviar' />  
+</form>
+<br/>
+<form action='#' method='post' align='center'>
 <input type='submit' class='boton' name='registrarse' value='Registrarse' />    
 </form>
 ";
+
+if(isset($_REQUEST['registrarse'])){
+    print "<script language=\"javascript\">window.location.href=\"Registrar.php\"</script>";
+}
+
 
 
 

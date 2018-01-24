@@ -33,12 +33,11 @@ p{
 }
 #menu ol li ol {
     position: absolute;
-    float: left;
     padding: 0px;
     list-style: none;
     width: 100px;
     visibility: hidden;
-    margin-left: 95px;
+    margin-left: -100px;
     margin-top: -25px;
 }
 #menu ol li:hover ol li{

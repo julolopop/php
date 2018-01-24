@@ -1,6 +1,9 @@
 <?php
 
 class App{
+    $dao = new Dao();
+
+
     static function showHeader($titulo){
         
         print "
@@ -22,8 +25,8 @@ class App{
                 <ol>
                 <li>Login
                 <ol>
-                <li>Login</li>
-                <li>Login</li>
+                <li><a href='Login.php'>Iniciar</a></li>
+                <li><a href='Registrar.php'>Registrarse</a></li>
                 </ol></li>
                 <li>Login</li>
                 <li>Login</li>
@@ -47,5 +50,8 @@ class App{
         ";
     }
 
+    function ValidarNick($nick){
+        return true;
+    }
 }
 ?>
