@@ -1,11 +1,11 @@
 
 footer{
-    background: grey;
+    background: #A7D6FE;
     height: 40px;
     text-align: center;
 }
 header{
-    background: grey;
+    background: #A7D6FE;
     height: 20%;
 }
 #contenido{
@@ -14,7 +14,7 @@ header{
     margin-bottom: 0%;
 }
 body{
-    background: rgb(197, 197, 197);
+    background: #EAD8C3;
 }
 h1{
     margin: 0px;
@@ -23,30 +23,81 @@ h1{
 p{
     margin: 0px;
 }
-ol{
-    margin: 0px;
+#menu ol{
+    position: relative;
+    float: left;
+    text-align: center;
+    padding: 0px;
+    width: 100px;
+    list-style: none;
+}
+#menu ol li ol {
+    position: absolute;
+    float: left;
+    padding: 0px;
+    list-style: none;
+    width: 100px;
+    visibility: hidden;
+    margin-left: 95px;
+    margin-top: -25px;
+}
+#menu ol li:hover ol li{
+    visibility: visible;    
 }
 nav{
     padding-top: 30px;
     width: 80%;
-    float: left;
+    float: right;
 }
 #menu{
-    float: left;
+    position: relative;
+    float: right;
     width: 20%;
-    margin-bottom: 10%;
-    margin-top: 10%;
+    margin-top: 20px;
+}
+#menu ol{
+    float: right;
 }
 #menu li{
-    font-size: 15px;
+    font-size: 20px;
+    border: 4px;
+    border-style: solid;
+    border-color: rgb(0, 18, 41);
+    background: #8DC4FD;
 }
 
 #menu li:hover{
-    font-size: 20px;
+    border-color: rgb(4, 0, 41);
+    background: #7DAEE9;
 }
 #principal{
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 0%;
     margin-bottom: 0%;
+    min-width: 550px;
+}
+
+.texto
+{
+ margin: 0;
+ font-family: inherit;
+ font-size: inherit;
+ line-height: inherit;
+ overflow: visible;
+ border-style: inset;
+ border-radius: 15%;
+}
+.boton
+{
+ margin: 0;
+ font-family: inherit;
+ font-size: inherit;
+ overflow: visible;
+ border-style: groove;
+ border-radius: 10%;
+}
+form p{
+    font-style: italic;
+    font-weight: bolder;
 }
