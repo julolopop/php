@@ -1,7 +1,11 @@
 <?php
 
 class App{
-    $dao = new Dao();
+    private $dao;
+    
+        function __construct(){
+            $this->dao = new Dao();
+        }
 
 
     static function showHeader($titulo){
@@ -36,6 +40,7 @@ class App{
         <nav>
         ";
     }
+
     static function showFooter(){
         print "
         </nav>

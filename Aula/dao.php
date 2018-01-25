@@ -8,8 +8,8 @@ class Dao{
     private $conn;
 
 
-    __construct(){
-        $this->conn = new mysql_connect("localhost","root");
+    function __construct(){
+       // $this->conn = new mysql_connect("localhost","root","",false,0);
     }
 
 }
