@@ -1,5 +1,5 @@
 <?php
-
+include_once "dao.php";
 class App{
     private $dao;
     
