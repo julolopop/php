@@ -1,6 +1,6 @@
 <?php
 include_once "App.php";
-
+session_start();
 App::showHeader("Inicio");
 
 $app = new App();
@@ -14,7 +14,7 @@ print "
 
 
 <form action='#' method='get' align='center'>
-<p>Usuario &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type='text' class='texto' name='user' required/></p>
+<p>Usuario &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='texto' name='user' required/></p>
 <p>Contraseña : <input type='password' class='texto' name='pas' required/></p>
 <br/>
 <input type='submit' class='boton' name='enviar' value='Enviar' />  
@@ -27,6 +27,27 @@ print "
 
 if(isset($_REQUEST['registrarse'])){
     print "<script language=\"javascript\">window.location.href=\"Registrar.php\"</script>";
+}
+
+if(isset($_REQUEST['enviar'])){
+    $nick = $_REQUEST['user'];
+    $contrasena = $_REQUEST['pas'];
+    $valor = $app->Loggear($nick);
+
+
+    if(count($valor) != 0){
+            $valores = $valor->fetch();
+            if($valores[2] == $contrasena){
+                $app->init_sesion($nick);
+                print "<script language=\"javascript\">window.location.href=\"Aulas.php\"</script>";
+
+            }else{
+                print "<p align='center'>Error con la contraseña</p>";
+            }
+          
+    }else{
+        print "<p align='center'>Error no Existe el usuario</p>";
+    }
 }
 
 
