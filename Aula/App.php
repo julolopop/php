@@ -32,6 +32,9 @@ class App{
         function anadirConsulta($tipo,$fecha,$nombre){
             return $this->dao->anadirConsultaDao($tipo,$fecha,$nombre);
         }
+        function altaConsulta($nick,$fecha,$nombre,$descripcion){
+            return $this->dao->altaConsultaDao($nick,$fecha,$nombre,$descripcion);
+        }
 
 
         function init_sesion($user){
@@ -86,7 +89,7 @@ class App{
                 <li><a href='Login.php'>Iniciar</a></li>
                 <li><a href='Registrar.php'>Registrarse</a></li>
                 </ol></li>
-                <li><a href='Aulas.php'>Aulas</a></li>
+                <li><a href='Aulas.php?nick=".$_REQUEST['nick']."'>Aulas</a></li>
                 <li>Login</li>
                 </ol>
         

@@ -39,7 +39,7 @@ if(isset($_REQUEST['enviar'])){
             $valores = $valor->fetch();
             if($valores[2] == $contrasena){
                 $app->init_sesion($nick);
-                print "<script language=\"javascript\">window.location.href=\"Aulas.php\"</script>";
+                print "<script language=\"javascript\">window.location.href=\"Aulas.php?nick=".$nick."\"</script>";
 
             }else{
                 print "<p align='center'>Error con la contraseña</p>";

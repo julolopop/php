@@ -6,7 +6,7 @@ $app->validateSession();
 APP::showHeader("Aula");
 
 if(isset($_REQUEST['buscar'])){
-    $aulas = $app->AulasConsultaF($_REQUEST['fecha']." ".$_REQUEST['tipo'])->fetchAll();
+    $aulas = $app->AulasConsultaF($_REQUEST['fecha']." ".$_REQUEST['tipo']);
 }
 
 
@@ -16,6 +16,9 @@ print "
 
 <form action='#' method='get' align='center'>
 <p>Hora</p>
+
+<input type='hidden'name='nick' value='".$_REQUEST['nick']."'/>
+
 <input type='radio' name='tipo' value='8:15:00' checked> 8:15 </input>
 <input type='radio' name='tipo' value='9:15:00'> 9:15</input>
 <input type='radio' name='tipo' value='10:15:00'> 10:15</input>
@@ -62,7 +65,7 @@ print "
         }
         print "</td>
         <td>".$row['ordenadores']."</td>
-        <td><a href='Reservas.php?tipo=8%3A15%3A00&fecha=2018-01-03&nombre=".$row['nombre']."&agregar=Agregar'>agregar</a></td>
+        <td><a href='Reservas.php?nick=".$_REQUEST['nick']."&tipo=".$_REQUEST['tipo']."&fecha=".$_REQUEST['fecha']."&nombre=".$row['nombre']."&agregar=Agregar'>agregar</a></td>
        </tr>";
     }        
  
@@ -74,7 +77,7 @@ print "
    
 if(isset($_REQUEST['agregar'])){
     $app->anadirConsulta($_REQUEST['tipo'],$_REQUEST['fecha'],$_REQUEST['nombre']);
-    print "<script language=\"javascript\">window.location.href=\"Alta.php?tipo=".$_REQUEST['tipo']."&fecha=".$_REQUEST['fecha']."&nombre=".$_REQUEST['nombre']."\"</script>";
+    print "<script language=\"javascript\">window.location.href=\"Alta.php?nick=".$_REQUEST['nick']."&tipo=".$_REQUEST['tipo']."&fecha=".$_REQUEST['fecha']."&nombre=".$_REQUEST['nombre']."\"</script>";
 }
 
 APP::showFooter();

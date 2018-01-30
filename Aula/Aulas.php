@@ -21,13 +21,13 @@ print "
 ";
 
 if(isset($_REQUEST['busqueda'])){
-    print "<script language=\"javascript\">window.location.href=\"Busqueda.php\"</script>";
+    print "<script language=\"javascript\">window.location.href=\"Busqueda.php?nick=".$_REQUEST['nick']."\"</script>";
 }
 if(isset($_REQUEST['reserva'])){
-    print "<script language=\"javascript\">window.location.href=\"Reservas.php\"</script>";
+    print "<script language=\"javascript\">window.location.href=\"Reservas.php?nick=".$_REQUEST['nick']."\"</script>";
 }
 if(isset($_REQUEST['consulta'])){
-    print "<script language=\"javascript\">window.location.href=\"Consulta.php\"</script>";
+    print "<script language=\"javascript\">window.location.href=\"Consulta.php?nick=".$_REQUEST['nick']."\"</script>";
 }
 
 

@@ -1,5 +1,5 @@
 <?php
-define ("DATABASE","aula");
+define ("DATABASE","aulas");
 define ("MYSQL_HOST","mysql:host=localhost;dbname=".DATABASE);
 define ("MYSQL_USER","root");
 define ("MYSQL_PASSWORD","toor");
@@ -11,7 +11,7 @@ class Dao{
 
     function __construct(){
         try{
-         $this->conn = new PDO(MYSQL_HOST,MYSQL_USER);
+         $this->conn = new PDO(MYSQL_HOST,MYSQL_USER,MYSQL_PASSWORD);
         }catch(PDOException $e){
          $this->error = "Error en la conesion".$e->getMessage();
          $this->conn = null;
@@ -31,7 +31,7 @@ class Dao{
     
     function AulasDao(){
         try{
-            $state =$this->conn->query("SELECT * FROM aulas");
+            $state =$this->conn->query("SELECT * FROM aula");
 
              return $state;
         }catch(PDOException $e){
@@ -41,7 +41,7 @@ class Dao{
 
     function AulasConsultaDao(){
         try{
-            $state =$this->conn->query("SELECT * FROM aulas as t1 , consulta as t2 WHERE t2.fecha!='null' AND t1.id=t2.id_aulas");
+            $state =$this->conn->query("SELECT * FROM aula as t1 , consulta as t2 WHERE t2.fecha!='null' AND t1.id=t2.id_aulas");
 
              return $state;
         }catch(PDOException $e){
@@ -51,25 +51,46 @@ class Dao{
 
     function AulasConsultaFDao($fecha){
         try{
-        $state = $this->conn->query("SELECT * FROM consulta  WHERE fecha='".$fecha."'");
+            //Extrae de la BD las filas con la fecha dada
+            $esnulo = $this->conn->query("SELECT * FROM consulta  WHERE fecha='".$fecha."'");
+            $esnulofecth = $esnulo->fetchAll();
+
+            //Extrae de la BD todas las aulas
+            $state = $this->conn->query("SELECT * FROM aula");
+            $listaAulas = $state->fetchAll();
 
 
+                //Comprobamos que al menos haya un elemento
+                if(count($esnulofecth)!=0){   
+                    //Si es del mismo tamaño, están todas las filas agregadas
+                    //Y no se puede agregar más, es decir, si hay aulas libres
+                    if (count($esnulofecth) != count($listaAulas)){      
+                        //Recorro las filas de la consulta, son las aulas ocupadas para
+                        //una fecha dada
+                        foreach ($esnulofecth as $row) {
+                            //Recorro todas las aulas
+                            for ($i=0; $i < count($listaAulas); $i++) { 
+                            
+                                if($listaAulas[$i]['id'] == $row['id_aulas']){
+                                    array_splice($listaAulas,$i,1);
+                                }
+                            }
+                        }
+                    }else{
+                      $listaAulas = array();
+                    }
+                }
+        return $listaAulas;
         
-        if(count($state->fetchAll())==0){
-            $state = $this->conn->query("SELECT * FROM aulas");
-        }else{
-            $state = $this->conn->query("SELECT * FROM consulta as t1 , aulas as t2 WHERE fecha='".$fecha."' AND t2.id!=t1.id_aulas GROUP BY t2.id");
-        }
-
-        return $state;
         }catch(PDOException $e){
             echo $e;
         }
     }
 
+
     function anadirConsultaDao($tipo,$fecha,$nombre){
         try{ 
-            $state =$this->conn->prepare("INSERT INTO consulta (fecha,id_aulas) SELECT '".$fecha." ".$tipo."',id FROM aulas as t1 WHERE nombre='".$nombre."' ");
+            $state =$this->conn->prepare("INSERT INTO consulta (fecha,id_aulas) SELECT '".$fecha." ".$tipo."',id FROM aula as t1 WHERE nombre='".$nombre."' ");
          
             $state->execute();
 
@@ -82,7 +103,7 @@ class Dao{
 
     function AulasNDao($nombre){
         try{
-            $state =$this->conn->query("SELECT * FROM aulas WHERE nombre='".$nombre."'");
+            $state =$this->conn->query("SELECT * FROM aula WHERE nombre='".$nombre."'");
 
              return $state;
         }catch(PDOException $e){
@@ -91,7 +112,7 @@ class Dao{
     }
     function AulasNCDao($nombrecorto){
         try{
-            $state =$this->conn->query("SELECT * FROM aulas WHERE nombreCorto='".$nombrecorto."'");
+            $state =$this->conn->query("SELECT * FROM aula WHERE nombreCorto='".$nombrecorto."'");
 
              return $state;
         }catch(PDOException $e){
@@ -105,6 +126,20 @@ class Dao{
             $state =$this->conn->prepare("INSERT INTO cliente VALUES (null,'".$usuario."','".$contrasena."','".$nick."')");
 
          $state->execute();
+
+         return $state;
+    
+        }catch(PDOException $e){
+            echo $e;
+        }
+    }
+
+    function altaConsultaDao($nick,$fecha,$nombre,$descripcion){
+        try{ 
+            $state =$this->conn->prepare("INSERT INTO consulta SELECT null,'".$fecha."',t1.id ,'".$descripcion."', t2.id FROM aula as t1 , cliente as t2 WHERE t1.nombre='".$nombre."' AND t2.nick='".$nick."'");
+
+         $state->execute();
+
 
          return $state;
     
