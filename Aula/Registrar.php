@@ -1,7 +1,7 @@
 <?php
 include_once "App.php";
 
-App::showHeader("Inicio");
+App::showHeaderIndex("Inicio");
 
 $app = new App();
 

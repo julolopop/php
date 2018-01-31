@@ -8,11 +8,14 @@ APP::showHeader("Aula");
 $aulas = $app->Aulas()->fetchAll();
 
 
+
+print "<h2 align='center'>Bienvenido  ".$_REQUEST['nick']."</h2><br/><br/><br/><br/>";
 print "
 <br/><br/>
 <p align='center'>Buscador de Aulas</p>
 
 <form action='#' method='get' align='center'>
+<input type='hidden' name='nick' value='".$_REQUEST['nick']."'/>
 <input type='radio' name='tipo' value='nombre' checked> Nombre </input>
 <input type='radio' name='tipo' value='nombreCorto'> Nombre Corto</input>
 

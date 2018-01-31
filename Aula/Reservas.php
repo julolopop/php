@@ -10,6 +10,7 @@ if(isset($_REQUEST['buscar'])){
 }
 
 
+print "<h2 align='center'>Bienvenido  ".$_REQUEST['nick']."</h2><br/><br/><br/><br/>";
 print "
 <br/><br/>
 <p align='center'>Buscador de Aulas libres</p>
@@ -31,7 +32,8 @@ print "
 <input type='submit' class='boton' name='buscar' value='Buscar' />    
 </form>
 ";
-
+if(isset($_REQUEST['fecha']))
+if($_REQUEST['fecha']!= "")
 if(isset($aulas))
 if(count($aulas)==0){
 

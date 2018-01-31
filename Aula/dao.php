@@ -11,7 +11,7 @@ class Dao{
 
     function __construct(){
         try{
-         $this->conn = new PDO(MYSQL_HOST,MYSQL_USER,MYSQL_PASSWORD);
+         $this->conn = new PDO(MYSQL_HOST,MYSQL_USER);
         }catch(PDOException $e){
          $this->error = "Error en la conesion".$e->getMessage();
          $this->conn = null;
@@ -41,7 +41,7 @@ class Dao{
 
     function AulasConsultaDao(){
         try{
-            $state =$this->conn->query("SELECT * FROM aula as t1 , consulta as t2 WHERE t2.fecha!='null' AND t1.id=t2.id_aulas");
+            $state =$this->conn->query("SELECT * FROM consulta as t1 , aula as t2 , cliente as t3  WHERE t1.fecha!='null' AND t1.id_aulas=t2.id");
 
              return $state;
         }catch(PDOException $e){
@@ -81,6 +81,18 @@ class Dao{
                     }
                 }
         return $listaAulas;
+        
+        }catch(PDOException $e){
+            echo $e;
+        }
+    }
+
+    function AulasConsultaFAllDao($fecha){
+        try{
+            
+            $state = $this->conn->query("SELECT * FROM consulta as t1 , aula as t2 , cliente as t3  WHERE t1.fecha='".$fecha."' AND t1.id_aulas=t2.id");
+            
+        return $state;
         
         }catch(PDOException $e){
             echo $e;
@@ -133,10 +145,21 @@ class Dao{
             echo $e;
         }
     }
+    function AulasGestionDao(){
+        try{
+            $fecha = getdate()['year']."-".sprintf("%'.02d", getdate()['mon'])."-".sprintf("%'.02d",getdate()['mday'])." ".sprintf("%'.02d",getdate()['hours'])
+            .":".sprintf("%'.02d",getdate()['minutes']).":".sprintf("%'.02d",getdate()['seconds']);
+            $state =$this->conn->query("SELECT * FROM consulta as t1 , aula as t2 , cliente as t3  WHERE t1.fecha>='".$fecha."' GROUP  BY t1.id_aulas");
+
+             return $state;
+        }catch(PDOException $e){
+            echo $e;
+        }
+    }
 
     function altaConsultaDao($nick,$fecha,$nombre,$descripcion){
         try{ 
-            $state =$this->conn->prepare("INSERT INTO consulta SELECT null,'".$fecha."',t1.id ,'".$descripcion."', t2.id FROM aula as t1 , cliente as t2 WHERE t1.nombre='".$nombre."' AND t2.nick='".$nick."'");
+            $state =$this->conn->prepare("INSERT INTO consulta SELECT null,'".$fecha."',t1.id ,'".$descripcion."', t2.id ,null FROM aula as t1 , cliente as t2 WHERE t1.nombre='".$nombre."' AND t2.nick='".$nick."'");
 
          $state->execute();
 
@@ -148,6 +171,20 @@ class Dao{
         }
     }
 
+
+    function EliminarGestionDao($id,$descripcion){
+        try{ 
+            $state =$this->conn->prepare("UPDATE consulta SET fecha = null  , eliminacion='".$descripcion."' WHERE id =".$id);
+
+         $state->execute();
+
+
+         return $state;
+    
+        }catch(PDOException $e){
+            echo $e;
+        }
+    }
 
 }
 ?>

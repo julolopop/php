@@ -6,6 +6,8 @@ $app->validateSession();
 APP::showHeader("Aula");
 
 
+print "<h2 align='center'>Bienvenido  ".$_REQUEST['nick']."</h2>";
+
 print "
 <br/><br/><br/><br/><h2 align='center'>Alta del aula</h2><br/><br/><br/>";
 

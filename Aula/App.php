@@ -29,11 +29,20 @@ class App{
         function AulasConsultaF($fecha){
             return $this->dao->AulasConsultaFDao($fecha);
         }
+        function AulasConsultaFAll($fecha){
+            return $this->dao->AulasConsultaFAllDao($fecha);
+        }
+        function AulasGestion(){
+            return $this->dao->AulasGestionDao();
+        }
         function anadirConsulta($tipo,$fecha,$nombre){
             return $this->dao->anadirConsultaDao($tipo,$fecha,$nombre);
         }
         function altaConsulta($nick,$fecha,$nombre,$descripcion){
             return $this->dao->altaConsultaDao($nick,$fecha,$nombre,$descripcion);
+        }
+        function EliminarGestion($id,$descripcion){
+            return $this->dao->EliminarGestionDao($id,$descripcion);
         }
 
 
@@ -90,7 +99,37 @@ class App{
                 <li><a href='Registrar.php'>Registrarse</a></li>
                 </ol></li>
                 <li><a href='Aulas.php?nick=".$_REQUEST['nick']."'>Aulas</a></li>
-                <li>Login</li>
+                </ol>
+        
+        </div>
+        <nav>
+        ";
+    }
+
+    static function showHeaderIndex($titulo){
+        
+        print "
+        <!DOCTYPE html>
+        <html>
+        <head lang = \"es\">
+        <meta charset=\"UTF-8\">
+        <title>$titulo</title>
+        <link href=\"css\stylo.css\" rel=\"stylesheet\">
+        </head>
+        <body>
+        <div id='principal'>
+        <header align='center'>
+        <h1>Aula</h1>
+        </header>
+        <div id='contenido'>
+        <div id='menu'>
+        
+                <ol>
+                <li>Login
+                <ol>
+                <li><a href='Login.php'>Iniciar</a></li>
+                <li><a href='Registrar.php'>Registrarse</a></li>
+                </ol></li>
                 </ol>
         
         </div>
